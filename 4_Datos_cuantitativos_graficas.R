@@ -39,9 +39,9 @@ head(iris_m)
 #  A.2.a Histogramas para Petal.Length por especie
 
 
-ggplot(data=iris,
+ggplot(iris,
        aes(Petal.Length,fill=Species,y=..density..)) +
-  geom_histogram(position="identity") +
+  geom_histogram() +
   geom_density(alpha=0.4) +
   facet_grid(Species~.)
 
@@ -50,7 +50,7 @@ ggplot(data=iris,
 # a `iris_m` y a `facet_wrap`
 
 
-ggplot(data=iris_m,
+ggplot(iris_m,
        aes(value,fill=Species)) +
   geom_density(alpha=0.4) +
   facet_wrap(~variable)
@@ -78,9 +78,9 @@ ggplot(data=iris_m,
 
 
 ggplot(iris,
-       aes(y=Petal.Length,x=Species,colour=Species)) +
-  geom_boxplot(outlier.color = "black") +
-  stat_summary(fun="mean", color="grey")
+       aes(y=Petal.Length,x=Species)) +
+  geom_boxplot() +
+  stat_summary(fun="mean", color="red")
 
 
 #  B.2 Diagrama de violin: muestra la forma de la distribucion
@@ -89,7 +89,7 @@ ggplot(iris,
 
 
 ggplot(iris,
-       aes(y=Petal.Length,x=Species,colour=Species)) +
+       aes(y=Petal.Length,x=Species)) +
   geom_violin()
 
 
@@ -107,7 +107,7 @@ ggplot(iris_m,
 
 ggplot(iris,
        aes(x = Petal.Length, y = Petal.Width)) +
-  geom_point(aes(colour = Species)) +
+  geom_point() +
   facet_grid(Species~.) +
   geom_smooth(method="lm",se=FALSE)
 

@@ -86,10 +86,11 @@ str(survey)
 
 #  C.1 Hagamos vectores sobre:
 
-## Que tan cargado les gusta el cafe a un grupo de programadoras:
-## Ligero: l, cargado: c, moderado: m
-## De que region viene el cafe que toman
+## De donde viene el cafe que toman un grupo de programadoras:
 ## L: Latinoamerica, A: Africa Central, S: Sureste de Asia
+## Que tan cargado les gusta el cafe:
+## Ligero: l, cargado: c, moderado: m
+
 
 cafe<-c("l","m","c", "c", "c","m")
 region<-c("L","L","L","A","A","S")

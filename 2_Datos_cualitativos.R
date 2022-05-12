@@ -111,11 +111,8 @@ ggplot(dat, aes(x=Clap, fill=W.Hnd)) + geom_bar(position="dodge")
 #  C.1 Smoke es una variable cualitativa ordinal, pero sus niveles están en desorden
 #Esto afecta el orden en que se tabulan y grafican los datos
 
-
+class(survey)
 levels(survey$Smoke)
-
-table(survey$Smoke)
-
 
 #  C.2 Ordenaremos los niveles de Smoke
 
@@ -181,3 +178,27 @@ mosaic(clap_hand_x, shade=TRUE, legend=TRUE)
 #Ademas con `vcd` podemos hacer graficas sobre la asociacion de variables
 
 assoc(clap_hand_x, shade=TRUE, legend=TRUE)
+
+#___Gráficas de Pie___#
+
+#Gráfica de la proporción de diestros y zurdos con la función pie
+pie(table(survey$W.Hnd))
+
+#Con ggplot2
+
+#Construir un data frame de conteos
+df_clap_hand<-data.frame(table(survey$Clap, survey$W.Hnd))
+colnames(df_clap_hand)<-c("Clap","W.Hnd","Freq")
+
+#Graficar
+ggplot(df_clap_hand, aes(x=1,y=Freq, fill=Clap)) +
+  geom_col(position="fill") +
+  coord_polar(theta = "y") +    #Convertir a pie
+  facet_wrap(~ W.Hnd)  +         #Un pie para diestros y otro para zurdos
+  theme(axis.title = element_blank(), #Quitar elementos no necesarios
+        axis.text = element_blank(),  #Quitar elementos no necesarios
+        axis.ticks = element_blank(),  #Quitar elementos no necesarios
+        panel.grid.major = element_blank(),  #Quitar elementos no necesarios
+        panel.grid.minor = element_blank(),  #Quitar elementos no necesarios
+        panel.border = element_blank())  #Quitar elementos no necesarios
+
